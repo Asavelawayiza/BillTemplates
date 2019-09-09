@@ -5,18 +5,26 @@ function radioBillTotal() {
     var totalCost1 = 0;
     
 function radioBill(bills){
+
+
     if (bills === "call") {
-        callsTotal1 += 2.75;
+        callsTotal1 += 2.75;   
     }
+
     else if (bills === "sms") {
         smsTotal1 += 0.75;
+      
     }
+  console.log(callsTotal1)
     totalCost1 = callsTotal1 + smsTotal1
-    
+   
 }
+
+
 
 function call1Temp() {
     return callsTotal1.toFixed(2);
+
 }
 
 function sms1Temp() {

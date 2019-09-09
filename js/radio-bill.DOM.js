@@ -4,39 +4,56 @@ var callTotalTwoElem = document.querySelector(".callTotalTwo");
 var smsTotalTwoElem = document.querySelector(".smsTotalTwo");
 var totalTwoElem = document.querySelector(".totalTwo");
 
-var templateSource = document.querySelector(".userTemplate").innerHTML;
-var userTemplate = Handlebars.compile(templateSource);
-var userDataElem = document.querySelector(".userData");
+
+var radioUserDataElem = document.querySelector(".userData1");
+var radioTemplateSource = document.querySelector(".userTemplate").innerHTML;
+var radioUserTemplate = Handlebars.compile(templateSource);
+
 
 var radioInstance = radioBillTotal()
 
-radio();
-function radio() {
+ //radio();
+function radioFun() {
 
+ var radioBillAddBtn = document.querySelector( "input[name = billItemType]:checked")
 
-
-  var radioBillAddBtn = document.querySelector( "input[name = billItemTypeRadio]:checked")
-  
   if (radioBillAddBtn) {
-    var currentBill = radioInstance.radioBill(radioBillAddBtn.value)
+    var billItemTypeRadio = radioBillAddBtn.value
   }
 
+  radioInstance.radioBill(billItemTypeRadio)
 
-  radioInstance.radioBill(currentBill);
   var colorChanger = radioInstance.color()
 
-  var userData = userTemplate({
+  var radioUserData = radioUserTemplate({
 
     call: "R" + radioInstance.call1Temp(),
     sms: "R" + radioInstance.sms1Temp(),
-    totals: "R" + radioInstance.total1radioBillAddBtnTemp(),
+    totals: "R" + radioInstance.total1Temp(),
     colorChanger
 
   })
+
+  console.log(radioUserData)
   
-  userDataElem.innerHTML = userData;
+  radioUserDataElem.innerHTML = radioUserData;
+}
  
+
+window.onload = function(){
+var radioUserData = radioUserTemplate({
+
+  call: "R" + radioInstance.call1Temp(),
+  sms: "R" + radioInstance.sms1Temp(),
+  totals: "R" + radioInstance.total1Temp(),
+  // colorChanger
+
+})
+
+radioUserDataElem.innerHTML = radioUserData;
+
 }
 
-radioBillAddBtn.addEventListener('click', radio)
+radioBillAddBtn.addEventListener('click', radioFun)
+ 
 
